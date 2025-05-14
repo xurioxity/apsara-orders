@@ -1,0 +1,177 @@
+/* Global Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header with Logo Styling */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.main-heading {
+    font-size: 2.5em;
+    color: #3bb5fb;
+    font-weight: bold;
+    background: linear-gradient(90deg, #3bb5fb, #6fdcff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+    animation: glow 1.5s infinite alternate;
+}
+
+
+/* Form Styling */
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+form input, form select, form button {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    flex: 1 1 180px;
+}
+
+form button {
+    background-color: #3bb5fb;
+    color: white;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #36a1e2;
+}
+
+/* Search Bar Styling */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    width: 50%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+    border-color: #3bb5fb;
+    box-shadow: 0 0 5px rgba(59, 181, 251, 0.5);
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #3bb5fb;
+    color: white;
+}
+
+/* Highlight Search Matches */
+.highlight {
+    background-color: #ffff00;
+    padding: 2px;
+    border-radius: 3px;
+}
+/* Buttons - Base Style */
+button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Edit Button */
+.edit {
+    background-color: #ffc107;
+    color: #000;
+}
+.edit:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+/* Delete Button */
+.delete {
+    background-color: #dc3545;
+    color: white;
+}
+.delete:hover {
+    background-color: #b52a37;
+    transform: scale(1.05);
+}
+
+/* Mark as Finished Button */
+.finished {
+    background-color: #28a745;
+    color: white;
+}
+.finished:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* Add Order Button (Form) */
+form button[type="submit"] {
+    background-color: #3bb5fb;
+    color: white;
+}
+form button[type="submit"]:hover {
+    background-color: #2ca4e5;
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+
+
+
+
