@@ -1,215 +1,167 @@
-const ordersRef = firebase.database().ref("orders");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apsara Gifts 3D Printing Orders</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <img src="apsara_gifts_logo.png" alt="Apsara Gifts Logo" class="logo">
+        <h1 class="main-heading">Apsara Gifts 3D Printing Orders</h1>
+    </div>
 
-function formatDate(dateStr) {
-  const [year, month, day] = dateStr.split("-");
-  return `${day}/${month}/${year}`;
-}
+    <div class="container">
+        <form id="orderForm">
+    <input type="text" id="productName" list="productList" placeholder="Product Name" required>
 
-// 🔄 Load and sync all orders in real-time
-ordersRef.on("value", snapshot => {
-  document.getElementById("pendingOrders").innerHTML = "";
-  document.getElementById("finishedOrders").innerHTML = "";
+<datalist id="productList">
+  <option value="Pack of 4 - Dummy 13">
+  <option value="Pack of 2 - Dummy 13 ">
+    <option value="Dummy 13 ">
+        <option value="Starburst Sword ">
+            <option value="Training Staff - LONG ">
+                <option value="Training Staff - Short ">
+                    <option value="Training Sword  ">
+                       <option value="Thunderstrike">
+                        <option value="Void Katana ">
+                            <option value="Silent Katana ">
+                                <option value="Soul Cleaver">
+                                    <option value="Dummy 13 Stand - Small ">
+                                        <option value="Reaper Machete ">
+                                            <option value="Dummy 13 Hat ">
+                                                <option value="Byte Knife - 2 pieces">
+                                                    <option value="Striker SMG ">
+                                                        <option value="Apex Handgun - 2 pieces">
+                                                            <option value="Blades of Chaos ">
+                                                                <option value="Pro Blade ">
+                                                                    <option value="Octopus Claws  ">
+                                                                        <option value="Wings ">
+                                                                            <option value="Junior Bike">
+                                              <option value="Morning Star">
+                                                                     <option value="Weapons Pack Level - 1">
+                                                        <option value="Dog - Dummy 13">
+                                                                      
+                                           
+</datalist>
 
-  snapshot.forEach(child => {
-    const order = child.val();
-    const id = child.key;
-    addOrderToTable(order, id);
-  });
-});
+            <input type="text" id="color" placeholder="Color" required>
+            <input type="text" id="customerName" placeholder="Customer Name" required>
+<select id="source" required>
+    <option value="" disabled selected>Select Source</option>
+    <option value="Amazon">Amazon</option>
+    <option value="Flipkart">Flipkart</option>
+    <option value="Website">Website</option>
+</select>
 
-// ➕ Submit new order
-document.getElementById("orderForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+            <input type="date" id="dispatchDate" required>
+            <input type="date" id="orderDate" required>
 
-  const order = {
-    productNames: document.getElementById("productName").value.split(','),
-    colors: document.getElementById("color").value.split(','),
-    customerName: document.getElementById("customerName").value,
-    source: document.getElementById("source").value,
-    dispatchDate: document.getElementById("dispatchDate").value,
-    orderDate: document.getElementById("orderDate").value,
-    priority: document.getElementById("priority").value,
-    finished: false
-  };
+            <select id="priority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <button type="submit">Add Order</button>
+        </form>
 
-  ordersRef.push(order);
-  document.getElementById("orderForm").reset();
-});
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="🔍 Search by Customer Name or Product Name">
+        </div>
 
-function addOrderToTable(order, firebaseKey) {
-  const row = document.createElement("tr");
+     <div class="sort-filter-row">
+  <div class="sort-options">
+    <label for="sortSelect"><strong>Sort by:</strong></label>
+    <select id="sortSelect">
+      <option value="none">-- Select --</option>
+      <option value="priority">Priority (High to Low)</option>
+      <option value="date">Order Date (Earliest First)</option>
+    </select>
+  </div>
 
-  const formattedProducts = order.productNames.map((p, i) =>
-    `${p.trim()} - ${order.colors[i] ? order.colors[i].trim() : 'N/A'}`
-  ).join('<br>');
+  <div class="filter-options">
+    <label for="sourceFilter"><strong>Filter by Source:</strong></label>
+    <select id="sourceFilter">
+      <option value="all">All Sources</option>
+      <option value="Amazon">🛒Amazon</option>
+      <option value="Flipkart">📦Flipkart</option>
+      <option value="Website">🌐Website</option>
+    </select>
+  </div>
+</div>
 
-  const priorityColors = {
-    High: "#28a745",
-    Medium: "#ffc107",
-    Low: "#dc3545"
-  };
 
-  row.innerHTML = `
-    <td class="productName">${formattedProducts}</td>
-    <td class="customerName">${order.customerName}</td>
-    <td class="source">${order.source}</td>
-    <td class="dispatchDate">${formatDate(order.dispatchDate)}</td>
-    <td class="orderDate">${formatDate(order.orderDate)}</td>
-    <td class="priority" style="background-color: ${priorityColors[order.priority]}; color: white; border-radius: 5px; text-align: center;">
-      ${order.priority}
-    </td>
-    <td>
-      ${order.finished ? `
-        <button class="delete">Delete</button>
-      ` : `
-        <button class="finished">Mark as Finished</button>
-        <button class="edit">Edit</button>
-        <button class="delete">Delete</button>
-      `}
-    </td>
-  `;
 
-  const table = order.finished ? document.getElementById("finishedOrders") : document.getElementById("pendingOrders");
-  table.appendChild(row);
+        <h2>Pending Orders</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Customer Name</th>
+                    <th>Source</th>
+                    <th>Order Date</th>
+                    <th>Dispatch Date</th>
+                    <th>Priority</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="pendingOrders"></tbody>
+        </table>
 
-  // 🗑️ Delete Order
-  row.querySelector(".delete").addEventListener("click", () => {
-    if (confirm("Delete this order?")) {
-      ordersRef.child(firebaseKey).remove();
-    }
-  });
+        <div class="finished-sort-row" style="text-align: center; margin-bottom: 20px;">
+  <label for="finishedSortSelect"><strong>Sort Finished Orders By:</strong></label>
+  <select id="finishedSortSelect" style="padding: 6px 12px; border-radius: 5px;">
+    <option value="none">-- Select --</option>
+    <option value="orderDate">Dispatch Date (Newest First)</option>
+  </select>
+</div>
 
-  if (!order.finished) {
-    // ✅ Mark as Finished
-    row.querySelector(".finished").addEventListener("click", () => {
-      order.finished = true;
-      ordersRef.child(firebaseKey).set(order);
-    });
 
-    // ✏️ Edit Order
-    row.querySelector(".edit").addEventListener("click", () => {
-      document.getElementById("productName").value = order.productNames.join(', ');
-      document.getElementById("color").value = order.colors.join(', ');
-      document.getElementById("customerName").value = order.customerName;
-      document.getElementById("source").value = order.source;
-      document.getElementById("dispatchDate").value = order.dispatchDate;
-      document.getElementById("orderDate").value = order.orderDate;
-      document.getElementById("priority").value = order.priority;
+        <h2>Finished Orders</h2>
+        <table>
+            <thead>
+                <tr>
+                    
+                    <th>Product Name</th>
+                    <th>Customer Name</th>
+                    <th>Source</th>
+                    <th>Order Date</th>
+                    <th>Dispatch Date</th>
 
-      ordersRef.child(firebaseKey).remove();
-    });
-  }
-}
+                    <th>Priority</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="finishedOrders"></tbody>
+        </table>
+    </div>
+   <!-- Firebase SDK for version 8 (must use v8 syntax) -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-// 🔍 Search + Highlight
-document.getElementById("searchInput").addEventListener("input", function () {
-  const filter = this.value.toLowerCase();
-  const rows = document.querySelectorAll("#pendingOrders tr, #finishedOrders tr");
+<script>
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDnXtvtsgRTaM0qLKjw4XqA5rh0iCrHOuM",
+  authDomain: "apsaraorders-cf4c4.firebaseapp.com",
+  databaseURL: "https://apsaraorders-cf4c4-default-rtdb.firebaseio.com",
+  projectId: "apsaraorders-cf4c4",
+  storageBucket: "apsaraorders-cf4c4.firebasestorage.app",
+  messagingSenderId: "351695597449",
+  appId: "1:351695597449:web:063833945412157d4afb58"
+};
 
-  rows.forEach(row => {
-    const nameCell = row.querySelector(".customerName");
-    const productCell = row.querySelector(".productName");
+  // ✅ Use this (version 8 style)
+  firebase.initializeApp(firebaseConfig);
+</script>
 
-    nameCell.innerHTML = nameCell.textContent;
-    productCell.innerHTML = productCell.textContent;
+<script src="script.js"></script>
 
-    const name = nameCell.textContent.toLowerCase();
-    const product = productCell.textContent.toLowerCase();
-
-    if (name.includes(filter) || product.includes(filter)) {
-      row.style.display = "";
-      if (filter !== "") {
-        const regex = new RegExp(filter, "gi");
-        nameCell.innerHTML = nameCell.textContent.replace(regex, m => `<span class="highlight">${m}</span>`);
-        productCell.innerHTML = productCell.textContent.replace(regex, m => `<span class="highlight">${m}</span>`);
-      }
-    } else {
-      row.style.display = "none";
-    }
-  });
-});
-document.getElementById("sortSelect").addEventListener("change", function () {
-  const selected = this.value;
-  const container = document.getElementById("pendingOrders");
-  const rows = Array.from(container.querySelectorAll("tr"));
-
-  if (selected === "priority") {
-    const priorityValue = { High: 1, Medium: 2, Low: 3 };
-    rows.sort((a, b) => {
-      const aText = a.querySelector(".priority").textContent.trim();
-      const bText = b.querySelector(".priority").textContent.trim();
-      return priorityValue[aText] - priorityValue[bText];
-    });
-  }
-
-  if (selected === "date") {
-    rows.sort((a, b) => {
-  const aDate = new Date(a.querySelector(".orderDate").textContent.split("/").reverse().join("-"));
-  const bDate = new Date(b.querySelector(".orderDate").textContent.split("/").reverse().join("-"));
-  return bDate - aDate; // ✅ Newest first
-});
-
-  }
-
-  rows.forEach(row => container.appendChild(row));
-});
-document.getElementById("sourceFilter").addEventListener("change", function () {
-  const selectedSource = this.value.toLowerCase();
-
-  document.querySelectorAll("#pendingOrders tr").forEach(row => {
-    const sourceCell = row.querySelector(".source")?.textContent.toLowerCase() || "";
-
-    if (selectedSource === "all" || sourceCell === selectedSource) {
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
-    }
-  });
-});
-document.getElementById("finishedSortSelect").addEventListener("change", function () {
-  const selected = this.value;
-  const container = document.getElementById("finishedOrders");
-  const rows = Array.from(container.querySelectorAll("tr"));
-
-  if (selected === "orderDate") {
-    rows.sort((a, b) => {
-      const aDate = new Date(a.querySelector(".orderDate").textContent.split("/").reverse().join("-"));
-      const bDate = new Date(b.querySelector(".orderDate").textContent.split("/").reverse().join("-"));
-      return aDate - bDate;
-    });
-  }
-
-  rows.forEach(row => container.appendChild(row));
-});
-document.addEventListener("keydown", function (e) {
-  // Alt-based shortcuts
-  if (e.altKey) {
-    switch (e.key.toLowerCase()) {
-      case 'a': // Alt + A → focus product name input
-        e.preventDefault();
-        document.getElementById("productName").focus();
-        break;
-      case 's': // Alt + S → focus search bar
-        e.preventDefault();
-        document.getElementById("searchInput").focus();
-        break;
-      case 'p': // Alt + P → scroll to pending
-        e.preventDefault();
-        document.getElementById("pendingOrders").scrollIntoView({ behavior: "smooth" });
-        break;
-      case 'f': // Alt + F → scroll to finished
-        e.preventDefault();
-        document.getElementById("finishedOrders").scrollIntoView({ behavior: "smooth" });
-        break;
-    }
-  }
-
-  // 🔥 Alt + Enter to submit order
-  if (e.altKey && e.key === "Enter") {
-    e.preventDefault();
-    document.getElementById("orderForm").requestSubmit(); // Safely trigger form submission
-  }
-});
+</body>
+</html>
 
 
 
