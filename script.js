@@ -128,6 +128,90 @@ document.getElementById("searchInput").addEventListener("input", function () {
     }
   });
 });
+document.getElementById("sortSelect").addEventListener("change", function () {
+  const selected = this.value;
+  const container = document.getElementById("pendingOrders");
+  const rows = Array.from(container.querySelectorAll("tr"));
+
+  if (selected === "priority") {
+    const priorityValue = { High: 1, Medium: 2, Low: 3 };
+    rows.sort((a, b) => {
+      const aText = a.querySelector(".priority").textContent.trim();
+      const bText = b.querySelector(".priority").textContent.trim();
+      return priorityValue[aText] - priorityValue[bText];
+    });
+  }
+
+  if (selected === "date") {
+    rows.sort((a, b) => {
+  const aDate = new Date(a.querySelector(".orderDate").textContent.split("/").reverse().join("-"));
+  const bDate = new Date(b.querySelector(".orderDate").textContent.split("/").reverse().join("-"));
+  return bDate - aDate; // ✅ Newest first
+});
+
+  }
+
+  rows.forEach(row => container.appendChild(row));
+});
+document.getElementById("sourceFilter").addEventListener("change", function () {
+  const selectedSource = this.value.toLowerCase();
+
+  document.querySelectorAll("#pendingOrders tr").forEach(row => {
+    const sourceCell = row.querySelector(".source")?.textContent.toLowerCase() || "";
+
+    if (selectedSource === "all" || sourceCell === selectedSource) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  });
+});
+document.getElementById("finishedSortSelect").addEventListener("change", function () {
+  const selected = this.value;
+  const container = document.getElementById("finishedOrders");
+  const rows = Array.from(container.querySelectorAll("tr"));
+
+  if (selected === "orderDate") {
+    rows.sort((a, b) => {
+      const aDate = new Date(a.querySelector(".orderDate").textContent.split("/").reverse().join("-"));
+      const bDate = new Date(b.querySelector(".orderDate").textContent.split("/").reverse().join("-"));
+      return aDate - bDate;
+    });
+  }
+
+  rows.forEach(row => container.appendChild(row));
+});
+document.addEventListener("keydown", function (e) {
+  // Alt-based shortcuts
+  if (e.altKey) {
+    switch (e.key.toLowerCase()) {
+      case 'a': // Alt + A → focus product name input
+        e.preventDefault();
+        document.getElementById("productName").focus();
+        break;
+      case 's': // Alt + S → focus search bar
+        e.preventDefault();
+        document.getElementById("searchInput").focus();
+        break;
+      case 'p': // Alt + P → scroll to pending
+        e.preventDefault();
+        document.getElementById("pendingOrders").scrollIntoView({ behavior: "smooth" });
+        break;
+      case 'f': // Alt + F → scroll to finished
+        e.preventDefault();
+        document.getElementById("finishedOrders").scrollIntoView({ behavior: "smooth" });
+        break;
+    }
+  }
+
+  // 🔥 Alt + Enter to submit order
+  if (e.altKey && e.key === "Enter") {
+    e.preventDefault();
+    document.getElementById("orderForm").requestSubmit(); // Safely trigger form submission
+  }
+});
+
+
 
 
 

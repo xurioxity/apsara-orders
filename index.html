@@ -19,7 +19,6 @@
     <input type="text" id="productName" list="productList" placeholder="Product Name" required>
 
 <datalist id="productList">
-  <option value="Thunderstrike">
   <option value="Pack of 4 - Dummy 13">
   <option value="Pack of 2 - Dummy 13 ">
     <option value="Dummy 13 ">
@@ -27,6 +26,7 @@
             <option value="Training Staff - LONG ">
                 <option value="Training Staff - Short ">
                     <option value="Training Sword  ">
+                       <option value="Thunderstrike">
                         <option value="Void Katana ">
                             <option value="Silent Katana ">
                                 <option value="Soul Cleaver">
@@ -69,8 +69,31 @@
         </form>
 
         <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="🔍 Search by Order ID or Customer Name">
+            <input type="text" id="searchInput" placeholder="🔍 Search by Customer Name or Product Name">
         </div>
+
+     <div class="sort-filter-row">
+  <div class="sort-options">
+    <label for="sortSelect"><strong>Sort by:</strong></label>
+    <select id="sortSelect">
+      <option value="none">-- Select --</option>
+      <option value="priority">Priority (High to Low)</option>
+      <option value="date">Order Date (Earliest First)</option>
+    </select>
+  </div>
+
+  <div class="filter-options">
+    <label for="sourceFilter"><strong>Filter by Source:</strong></label>
+    <select id="sourceFilter">
+      <option value="all">All Sources</option>
+      <option value="Amazon">🛒Amazon</option>
+      <option value="Flipkart">📦Flipkart</option>
+      <option value="Website">🌐Website</option>
+    </select>
+  </div>
+</div>
+
+
 
         <h2>Pending Orders</h2>
         <table>
@@ -87,6 +110,15 @@
             </thead>
             <tbody id="pendingOrders"></tbody>
         </table>
+
+        <div class="finished-sort-row" style="text-align: center; margin-bottom: 20px;">
+  <label for="finishedSortSelect"><strong>Sort Finished Orders By:</strong></label>
+  <select id="finishedSortSelect" style="padding: 6px 12px; border-radius: 5px;">
+    <option value="none">-- Select --</option>
+    <option value="orderDate">Dispatch Date (Newest First)</option>
+  </select>
+</div>
+
 
         <h2>Finished Orders</h2>
         <table>
