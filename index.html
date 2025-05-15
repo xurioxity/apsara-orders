@@ -16,39 +16,8 @@
 
     <div class="container">
         <form id="orderForm">
-    <input type="text" id="productName" list="productList" placeholder="Product Name" required>
-
-<datalist id="productList">
-  <option value="Pack of 4 - Dummy 13">
-  <option value="Pack of 2 - Dummy 13 ">
-    <option value="Dummy 13 ">
-        <option value="Starburst Sword ">
-            <option value="Training Staff - LONG ">
-                <option value="Training Staff - Short ">
-                    <option value="Training Sword  ">
-                       <option value="Thunderstrike">
-                        <option value="Void Katana ">
-                            <option value="Silent Katana ">
-                                <option value="Soul Cleaver">
-                                    <option value="Dummy 13 Stand - Small ">
-                                        <option value="Reaper Machete ">
-                                            <option value="Dummy 13 Hat ">
-                                                <option value="Byte Knife - 2 pieces">
-                                                    <option value="Striker SMG ">
-                                                        <option value="Apex Handgun - 2 pieces">
-                                                            <option value="Blades of Chaos ">
-                                                                <option value="Pro Blade ">
-                                                                    <option value="Octopus Claws  ">
-                                                                        <option value="Wings ">
-                                                                            <option value="Junior Bike">
-                                              <option value="Morning Star">
-                                                                     <option value="Weapons Pack Level - 1">
-                                                        <option value="Dog - Dummy 13">
-                                                                      
-                                           
-</datalist>
-
-            <input type="text" id="color" placeholder="Color" required>
+            <div id="productColorContainer"></div>
+<button type="button" id="addProductBtn">➕ Add Product</button>
             <input type="text" id="customerName" placeholder="Customer Name" required>
 <select id="source" required>
     <option value="" disabled selected>Select Source</option>
@@ -78,7 +47,7 @@
     <select id="sortSelect">
       <option value="none">-- Select --</option>
       <option value="priority">Priority (High to Low)</option>
-      <option value="date">Order Date (Earliest First)</option>
+      <option value="date">Order Date (Newest First)</option>
     </select>
   </div>
 
@@ -115,7 +84,7 @@
   <label for="finishedSortSelect"><strong>Sort Finished Orders By:</strong></label>
   <select id="finishedSortSelect" style="padding: 6px 12px; border-radius: 5px;">
     <option value="none">-- Select --</option>
-    <option value="orderDate">Dispatch Date (Newest First)</option>
+    <option value="orderDate">Dispatch Date (Oldest First)</option>
   </select>
 </div>
 
