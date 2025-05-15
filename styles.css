@@ -261,6 +261,114 @@ form button[type="submit"]:hover {
   border-color: #3bb5fb;
   box-shadow: 0 0 5px rgba(59, 181, 251, 0.4);
 }
+.product-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.product-dropdown {
+  padding: 6px 10px;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 5px;
+}
+
+.remove-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.remove-btn:hover {
+  background-color: #b52a37;
+}
+.color-wrapper {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 6px 0;
+}
+
+.color-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.2s;
+}
+
+.color-circle.selected {
+  border: 2px solid #3bb5fb;
+  box-shadow: 0 0 5px rgba(59, 181, 251, 0.6);
+}
+/* Product Row Layout */
+.product-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  background-color: #f2f9ff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.06);
+}
+
+/* Product Dropdown */
+.product-dropdown {
+  padding: 8px 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  min-width: 180px;
+}
+
+/* Color Swatch Area */
+.color-wrapper {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.color-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.2s ease;
+}
+
+.color-circle:hover {
+  transform: scale(1.1);
+}
+
+.color-circle.selected {
+  border: 2px solid #3bb5fb;
+  box-shadow: 0 0 6px rgba(59, 181, 251, 0.6);
+}
+
+/* Remove Button */
+.remove-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.remove-btn:hover {
+  background-color: #b52a37;
+  transform: scale(1.05);
+}
 
 
 
