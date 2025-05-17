@@ -58,17 +58,20 @@ function createProductRow(product = "", color = "#000000") {
   });
 const colors = [
   { name: "Black", code: "#000000" },
-  { name: "Blue", code: "#0000FF" },
-  { name: "Gold", code: "#FFD700" },
-  { name: "Peak Green", code: "#00FF9F" },
+  { name: "Light Green", code: "#32F750" },
+  { name: "Light Blue", code: "#05D5FA" },
   { name: "Pink", code: "#FF69B4" },
   { name: "Purple", code: "#800080" },
   { name: "Red", code: "#FF0000" },
   { name: "White", code: "#FFFFFF" },
   { name: "Yellow", code: "#FFFF00" },
-  { name: "Chocolate", code: "#D2691E" },
-  { name: "Green", code: "#008000" },
-  { name: "Orange", code: "#FFA500" }
+    { name: "Orange", code: "#FFA500" },
+  { name: "Chocolate", code: "#4B3621" },
+  { name: "Dark Green", code: "#008000" },
+  { name: "Grey", code: "#808080" },
+    { name: "Gold", code: "#B8860B" },
+   { name: "Dark Blue", code: "#0000FF" },
+   { name: "Transparent", code: "#D3D3D3" },
 ];
 
 const colorWrapper = document.createElement("div");
